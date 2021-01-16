@@ -7,7 +7,11 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.joins(:user).select(:id, :content, 'users.email as poster').all
+    @posts = Post
+             .joins(:user)
+             .select(:id, :content, 'users.email as poster')
+             .all
+             .order(created_at: :desc)
   end
 
   # GET /posts/1
@@ -66,7 +70,10 @@ class PostsController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_post
-    @post = Post.find(params[:id])
+    @post = Post
+            .joins(:user)
+            .select(:id, :content, 'users.email as poster')
+            .find(params[:id])
   end
 
   # Only allow a list of trusted parameters through.
