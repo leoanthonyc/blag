@@ -5,7 +5,7 @@
 ## Local Setup
 
 - Install Ruby and Ruby on Rails. Check this [macOS guide](https://www.digitalocean.com/community/tutorials/how-to-install-ruby-on-rails-with-rbenv-on-macos)
-- Install postgresql with this [homebrew guide](https://formulae.brew.sh/formula/postgresql)
+- Install postgresql with `brew install postgresql`
 - Run `rails db:setup`
 - Run `rails s`
 
