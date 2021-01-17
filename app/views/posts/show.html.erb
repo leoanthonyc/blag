@@ -20,12 +20,17 @@
   <h2>Comments</h2>
   <% @post.comments.each do |comment| %>
     <p>
-    <%= comment.created_at.to_formatted_s(:short) %> :
     <%= comment.content %>
-    <small>
-    <%= comment.user.email %>
-    </small>
+    </p>
+    <p>
+      <small>
+      <%= comment.user.email %>
+      <em>
+      <%= comment.created_at.to_formatted_s(:short) %>
+      </em>
+      </small>
     </p>
   <% end %>
 </div>
-<%= link_to 'New Comment', new_post_comment_path(@post) %>
+
+<%= turbo_frame_tag 'new_comment', src: new_post_comment_path(@post), target: '_top' %>
