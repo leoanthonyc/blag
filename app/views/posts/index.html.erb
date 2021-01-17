@@ -17,7 +17,7 @@
     <% @posts.each do |post| %>
       <tr>
         <td><%= link_to post.content, post %></td>
-        <td><%= post.poster %></td>
+        <td><%= post.user.email %></td>
       </tr>
     <% end %>
   </tbody>

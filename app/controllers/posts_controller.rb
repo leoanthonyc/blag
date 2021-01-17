@@ -7,11 +7,7 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post
-             .joins(:user)
-             .select(:id, :content, 'users.email as poster')
-             .all
-             .order(created_at: :desc)
+    @posts = Post.all.order(created_at: :desc)
   end
 
   # GET /posts/1
@@ -20,7 +16,7 @@ class PostsController < ApplicationController
 
   # GET /posts/new
   def new
-    @post = Post.new(user: current_user)
+    @post = current_user.posts.new
   end
 
   # GET /posts/1/edit
@@ -29,7 +25,7 @@ class PostsController < ApplicationController
   # POST /posts
   # POST /posts.json
   def create
-    @post = Post.new(post_params.merge(user: current_user))
+    @post = current_user.posts.new(post_params)
 
     respond_to do |format|
       if @post.save
@@ -70,10 +66,7 @@ class PostsController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_post
-    @post = Post
-            .joins(:user)
-            .select(:id, :content, 'users.email as poster')
-            .find(params[:id])
+    @post = current_user.posts.find(params[:id])
   end
 
   # Only allow a list of trusted parameters through.

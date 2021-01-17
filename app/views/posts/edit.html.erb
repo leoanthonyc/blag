@@ -1,5 +1,6 @@
 <h1>Editing Post</h1>
 
-<%= render 'form', post: @post %>
-
-<%= link_to 'Back', @post %> 
+<%= turbo_frame_tag "post" do %>
+  <%= render 'form', post: @post %>
+<% end %>
+<%= link_to 'Back', @post %>

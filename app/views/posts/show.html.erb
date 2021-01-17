@@ -1,15 +1,31 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Content:</strong>
-  <%= @post.content %>
-</p>
+<%= turbo_frame_tag "post" do %>
+  <p>
+    <strong>Content:</strong>
+    <%= @post.content %>
+  </p>
 
-<p>
-  <strong>User:</strong>
-  <%= @post.poster %>
-</p>
+  <p>
+    <strong>User:</strong>
+    <%= @post.user.email %>
+  </p>
 
-<%= link_to 'Back', posts_path %> |
-<%= link_to 'Edit', edit_post_path(@post) %> |
-<%= link_to 'Destroy', @post, method: :delete, data: { confirm: 'Are you sure?' } %> 
+  <%= link_to 'Back', posts_path, 'data-turbo-frame': '_top' %> |
+  <%= link_to 'Edit', edit_post_path(@post) %> |
+  <%= link_to 'Destroy', @post, method: :delete, data: { confirm: 'Are you sure?' } %>
+<% end %>
+
+<div>
+  <h2>Comments</h2>
+  <% @post.comments.each do |comment| %>
+    <p>
+    <%= comment.created_at.to_formatted_s(:short) %> :
+    <%= comment.content %>
+    <small>
+    <%= comment.user.email %>
+    </small>
+    </p>
+  <% end %>
+</div>
+<%= link_to 'New Comment', new_post_comment_path(@post) %>
