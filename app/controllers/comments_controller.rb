@@ -13,14 +13,12 @@ class CommentsController < ApplicationController
 
   def create
     @comment = @post.comments.new(comment_params.merge(user: current_user))
-
     respond_to do |format|
       if @comment.save
+        format.turbo_stream
         format.html { redirect_to @post, notice: 'Comment was successfully created.' }
-        format.json { render :show, status: :created, location: @comment }
       else
         format.html { render :new }
-        format.json { render json: @comment.errors, status: :unprocessable_entity }
       end
     end
   end

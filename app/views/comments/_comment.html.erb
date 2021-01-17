@@ -1,0 +1,11 @@
+<p>
+<%= comment.content %>
+</p>
+<p>
+  <small>
+  <%= comment.user.email %>
+  <em>
+  <%= comment.created_at.to_formatted_s(:short) %>
+  </em>
+  </small>
+</p>
