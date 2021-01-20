@@ -1,8 +1,7 @@
-
 <h1>New Comment</h1>
 
 <%= turbo_frame_tag 'new_comment', target: '_top' do %>
-  <%= form_with(model: [@comment.post, @comment],
+  <%= form_with(model: [current_user, @comment.post, @comment],
                 data: { controller: "reset_form", action: "turbo:submit-end->reset_form#reset" }) do |form| %>
     <% if @comment.errors.any? %>
       <div id="error_explanation">
@@ -25,4 +24,4 @@
   <% end %>
 <% end %>
 
-<%= link_to 'Back', post_path(@post) %>
+<%= link_to 'Back', user_post_path(@post.user, @post) %>

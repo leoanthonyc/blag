@@ -3,4 +3,4 @@
 <%= turbo_frame_tag "post" do %>
   <%= render 'form', post: @post %>
 <% end %>
-<%= link_to 'Back', @post %>
+<%= link_to 'Back', [current_user, @post] %>

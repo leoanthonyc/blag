@@ -9,9 +9,9 @@
     <%= @post.user.email %>
   </p>
 
-  <%= link_to 'Back', posts_path, 'data-turbo-frame': '_top' %> |
-  <%= link_to 'Edit', edit_post_path(@post) %> |
-  <%= link_to 'Delete', @post, method: :delete, data: { confirm: 'Are you sure?' } %>
+  <%= link_to 'Back', user_posts_path(@post.user), 'data-turbo-frame': '_top' %> |
+  <%= link_to 'Edit', edit_user_post_path(@post.user, @post) %> |
+  <%= link_to 'Destroy', [@post.user, @post], method: :delete, data: { confirm: 'Are you sure?' } %>
 <% end %>
 
 <div id="comments">
@@ -19,4 +19,4 @@
   <%= render @post.comments %>
 </div>
 
-<%= turbo_frame_tag 'new_comment', src: new_post_comment_path(@post), target: '_top' %>
+<%= turbo_frame_tag 'new_comment', src: new_user_post_comment_path(@post.user, @post), target: '_top' %>
