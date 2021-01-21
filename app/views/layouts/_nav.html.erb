@@ -1,4 +1,10 @@
 <nav>
   <%= link_to 'All', root_path %>
-  <%= link_to 'User', user_path(current_user) %>
+  <%= link_to 'User', user_posts_path(current_user) %>
 </nav>
+<% if user_signed_in? %>
+  <div>
+    Signed in as <b><%= current_user.email %></b>
+    <%= link_to 'Sign out', destroy_user_session_path, method: :delete %>
+  <div>
+<% end %>

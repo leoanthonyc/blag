@@ -4,11 +4,16 @@
 
 <%= turbo_frame_tag "post" do %>
   <p>
-    <%= @post.content %>
+    <big>
+      <%= @post.content %>
+    </big>
   </p>
 
   <p>
-    <%= @post.user.email %>
+    <small>
+      <%= @post.user.email %> @
+      <%= @post.created_at.to_formatted_s(:short) %>
+    </small>
   </p>
 
   <% if @post.user == current_user %>

@@ -4,11 +4,12 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_post, only: %i[show edit update destroy]
+  before_action :set_poster, only: %i[index show]
 
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.where(user_id: params[:user_id]).order(created_at: :desc)
+    @posts = @poster.posts.order(created_at: :desc)
   end
 
   # GET /posts/1
@@ -68,6 +69,10 @@ class PostsController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_post
     @post = Post.find(params[:id])
+  end
+
+  def set_poster
+    @poster = User.find(params[:user_id])
   end
 
   # Only allow a list of trusted parameters through.

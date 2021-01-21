@@ -6,6 +6,5 @@ class HomeController < ApplicationController
 
   def index
     @posts = Post.all.order(created_at: :desc)
-    render 'posts/index'
   end
 end
