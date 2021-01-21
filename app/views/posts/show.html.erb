@@ -1,7 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<%= link_to 'Home', root_path %>
-<%= link_to 'User Posts', user_posts_path(@post.user) %>
+<%= link_to "#{@post.user.email} posts", user_posts_path(@post.user) %>
 
 <%= turbo_frame_tag "post" do %>
   <p>
