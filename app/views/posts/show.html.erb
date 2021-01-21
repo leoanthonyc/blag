@@ -1,5 +1,8 @@
 <p id="notice"><%= notice %></p>
 
+<%= link_to 'Home', root_path %>
+<%= link_to 'User Posts', user_posts_path(@post.user) %>
+
 <%= turbo_frame_tag "post" do %>
   <p>
     <%= @post.content %>
@@ -9,9 +12,10 @@
     <%= @post.user.email %>
   </p>
 
-  <%= link_to 'Back', user_posts_path(@post.user), 'data-turbo-frame': '_top' %> |
-  <%= link_to 'Edit', edit_user_post_path(@post.user, @post) %> |
-  <%= link_to 'Destroy', [@post.user, @post], method: :delete, data: { confirm: 'Are you sure?' } %>
+  <% if @post.user == current_user %>
+    <%= link_to 'Edit', edit_user_post_path(@post.user, @post) %> |
+    <%= link_to 'Destroy', [@post.user, @post], method: :delete, data: { confirm: 'Are you sure?' } %>
+  <% end %>
 <% end %>
 
 <div id="comments">

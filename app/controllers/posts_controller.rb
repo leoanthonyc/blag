@@ -8,7 +8,7 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.all.order(created_at: :desc)
+    @posts = Post.where(user_id: params[:user_id]).order(created_at: :desc)
   end
 
   # GET /posts/1
@@ -67,7 +67,7 @@ class PostsController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_post
-    @post = current_user.posts.find(params[:id])
+    @post = Post.find(params[:id])
   end
 
   # Only allow a list of trusted parameters through.

@@ -5,7 +5,7 @@ class HomeController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @posts = current_user.posts
+    @posts = Post.all.order(created_at: :desc)
     render 'posts/index'
   end
 end
