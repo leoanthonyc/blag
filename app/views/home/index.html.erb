@@ -2,15 +2,8 @@
 
 <h1>All Posts</h1>
 
-<%= link_to 'New Post', new_user_post_path(current_user) %>
+<%= turbo_frame_tag 'new_post', src: new_user_post_path(current_user), target: '_top' %>
 
-<ul>
-    <% @posts.each do |post| %>
-      <li>
-        <big>
-          <%= link_to post.content, [post.user, post] %> 
-        </big>
-        <small><%= post.user.email %></small>
-      </li>
-    <% end %>
+<ul id="posts">
+  <%= render @posts %>
 </ul>

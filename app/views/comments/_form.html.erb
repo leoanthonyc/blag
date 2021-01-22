@@ -1,23 +1,23 @@
-<%= form_with(model: [@comment.post, @comment],
-              data: { controller: "reset_form", action: "turbo:submit-end->reset_form#reset" },
-              local: true) do |form| %>
-  <% if comment.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
-      <ul>
-        <% comment.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
+<%= turbo_frame_tag 'new_comment', target: '_top' do %>
+  <%= form_with(model: [current_user, comment.post, comment],
+                data: { controller: "reset_form", action: "turbo:submit-end->reset_form#reset" }) do |form| %>
+    <% if comment.errors.any? %>
+      <div id="error_explanation">
+        <ul>
+          <% comment.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="field">
+      <%= form.label :content, 'Comment' %>
+      <%= form.text_area :content %>
+    </div>
+
+    <div class="actions">
+      <%= form.submit 'Submit', data: { disable_with: false } %>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= form.label :content, 'Comment' %>
-    <%= form.text_area :content %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit 'Submit' %>
-  </div>
 <% end %>

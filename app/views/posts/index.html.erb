@@ -3,15 +3,9 @@
 <h2><%= @poster.email %></h2>
 
 <% if @poster == current_user %>
-  <%= link_to 'New Post', new_user_post_path(current_user) %>
+  <%= turbo_frame_tag 'new_post', src: new_user_post_path(current_user), target: '_top' %>
 <% end %>
 
-<ul>
-    <% @posts.each do |post| %>
-      <li>
-        <big>
-          <%= link_to post.content, [post.user, post] %> 
-        </big>
-      </li>
-    <% end %>
+<ul id="posts">
+    <%= render @posts %>
 </ul>

@@ -1,4 +1,5 @@
-<%= form_with(model: [post.user, post], local: true) do |form| %>
+<%= form_with(model: [post.user, post],
+              data: { controller: "reset_form", action: "turbo:submit-end->reset_form#reset" }) do |form| %>
   <% if post.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
@@ -17,6 +18,6 @@
   </div>
 
   <div class="actions">
-    <%= form.submit 'Save' %>
+    <%= form.submit 'Post', data: { disable_with: false } %>
   </div>
 <% end %>

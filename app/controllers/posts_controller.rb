@@ -9,7 +9,7 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @posts = @poster.posts.order(created_at: :desc)
+    @posts = @poster.posts
   end
 
   # GET /posts/1
@@ -28,14 +28,12 @@ class PostsController < ApplicationController
   # POST /posts.json
   def create
     @post = current_user.posts.new(post_params)
-
     respond_to do |format|
       if @post.save
-        format.html { redirect_to [current_user, @post], notice: 'Post was successfully created.' }
-        format.json { render :show, status: :created, location: @post }
+        format.turbo_stream
+        format.html { redirect_to none, notice: 'Post was successfully created.' }
       else
         format.html { render :new }
-        format.json { render json: @post.errors, status: :unprocessable_entity }
       end
     end
   end
