@@ -1,6 +1,7 @@
 <nav>
-  <%= link_to 'All', root_path %>
-  <%= link_to 'User', user_posts_path(current_user) %>
+  <%= link_to 'Home', root_path %>
+  <%= link_to 'Users' %>
+  <%= link_to current_user.email, user_posts_path(current_user) %>
 </nav>
 <% if user_signed_in? %>
   <div>
