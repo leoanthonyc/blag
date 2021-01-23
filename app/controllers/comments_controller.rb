@@ -15,9 +15,11 @@ class CommentsController < ApplicationController
     @comment = @post.comments.new(comment_params.merge(user: current_user))
     respond_to do |format|
       if @comment.save
-        format.turbo_stream
         format.html { redirect_to [@post.user, @post], notice: 'Comment was successfully created.' }
       else
+        format.turbo_stream do
+          render turbo_stream: turbo_stream.replace(@comment, partial: 'comments/form', locals: { comment: @comment })
+        end
         format.html { render :new }
       end
     end

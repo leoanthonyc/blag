@@ -21,9 +21,10 @@
   <% end %>
 <% end %>
 
-<div id="comments">
+<%= turbo_stream_from "comments" %>
+<%= turbo_frame_tag "comments" do %>
   <h2>Comments</h2>
   <%= render @post.comments %>
-</div>
+<% end %>
 
 <%= turbo_frame_tag 'new_comment', src: new_user_post_comment_path(@post.user, @post), target: '_top' %>
