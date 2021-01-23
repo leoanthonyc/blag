@@ -21,4 +21,6 @@
   <%= turbo_frame_tag 'new_post', src: new_user_post_path(current_user), target: '_top' %>
 <% end %>
 
-<%= render @user.posts %>
+<ul id="posts">
+  <%= render @user.posts %>
+</ul>
