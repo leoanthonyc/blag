@@ -1,11 +1,5 @@
 <p id="notice"><%= notice %></p>
 
-<h2><%= @poster.email %></h2>
-
-<% if @poster == current_user %>
-  <%= turbo_frame_tag 'new_post', src: new_user_post_path(current_user), target: '_top' %>
-<% end %>
-
 <ul id="posts">
     <%= render @posts %>
 </ul>
