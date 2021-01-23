@@ -1,6 +1,7 @@
 <%= turbo_frame_tag comment do %>
   <p><%= comment.content %></p>
   <p>
+    <%= link_to 'Edit', edit_user_post_comment_path(comment.user, comment.post, comment) %>
     <small>
       <%= comment.user.email %> @
       <em>
@@ -8,5 +9,4 @@
       </em>
     </small>
   </p>
-  <%= link_to 'Edit', edit_user_post_comment_path(comment.user, comment.post, comment) %>
 <% end %>
