@@ -2,6 +2,21 @@
 
 <h2><%= @user.email %></h2>
 
+<%= turbo_frame_tag "user" do %>
+  <% if @user.about.present? %>
+    About
+    <div class="about">
+      <%= @user.about %>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <% if @user == current_user %>
+      <%= link_to 'Edit Profile', edit_user_path(@user) %> 
+    <% end %>
+  </div>
+<% end %>
+
 <% if @user == current_user %>
   <%= turbo_frame_tag 'new_post', src: new_user_post_path(current_user), target: '_top' %>
 <% end %>
