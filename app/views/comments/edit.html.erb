@@ -1,0 +1,6 @@
+<h2>Editing Comment</h2>
+
+<%= turbo_frame_tag @comment do %>
+  <%= render 'form', comment: @comment %>
+  <%= link_to 'Cancel', [@comment.user, @comment.post] %>
+<% end %>
