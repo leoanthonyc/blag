@@ -1,6 +1,5 @@
 <p id="notice"><%= notice %></p>
 
-<%= link_to "#{@post.user.email} posts", user_posts_path(@post.user) %>
 
 <%= turbo_frame_tag "post" do %>
   <p>
@@ -11,7 +10,7 @@
 
   <p>
     <small>
-      <%= @post.user.email %> @
+      <%= link_to "#{@post.user.email}", @post.user, target: '_top' %> @
       <%= @post.created_at.to_formatted_s(:short) %>
     </small>
   </p>
