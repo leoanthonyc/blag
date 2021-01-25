@@ -31,7 +31,7 @@ class PostsController < ApplicationController
     respond_to do |format|
       if @post.save
         format.turbo_stream
-        format.html { redirect_to none, notice: 'Post was successfully created.' }
+        format.html { redirect_to [current_user, @post], notice: 'Post was successfully created.' }
       else
         format.html { render :new }
       end
