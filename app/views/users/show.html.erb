@@ -1,21 +1,23 @@
 <p id="notice"><%= notice %></p>
 
-<h2><%= @user.email %></h2>
+<div class="user-info">
+  <h2><%= @user.email %></h2>
 
-<%= turbo_frame_tag "user" do %>
-  <% if @user.about.present? %>
-    About
-    <div class="about">
-      <%= @user.about %>
+  <%= turbo_frame_tag "user" do %>
+    <% if @user.about.present? %>
+      <div class="about">
+        About
+        <p><%= @user.about %></p>
+      </div>
+    <% end %>
+
+    <div class="actions">
+      <% if @user == current_user %>
+        <%= link_to 'Edit', edit_user_path(@user) %> 
+      <% end %>
     </div>
   <% end %>
-
-  <div class="actions">
-    <% if @user == current_user %>
-      <%= link_to 'Edit Profile', edit_user_path(@user) %> 
-    <% end %>
-  </div>
-<% end %>
+</div>
 
 <% if @user == current_user %>
   <%= turbo_frame_tag 'new_post', src: new_user_post_path(current_user), target: '_top' %>
