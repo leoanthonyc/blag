@@ -20,7 +20,9 @@
 </div>
 
 <% if @user == current_user %>
-  <%= turbo_frame_tag 'new_post', src: new_user_post_path(current_user), target: '_top' %>
+  <div class='new-post'>
+    <%= turbo_frame_tag 'new_post', src: new_user_post_path(current_user), target: '_top' %>
+  </div>
 <% end %>
 
 <ul id="posts">
