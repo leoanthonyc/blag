@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# no-doc
+# nodoc
 class PostsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_post, only: %i[show edit update destroy]

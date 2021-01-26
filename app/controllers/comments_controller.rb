@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# nodoc
 class CommentsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_post, only: %i[new create]
