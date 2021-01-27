@@ -1,29 +1,32 @@
 <p id="notice"><%= notice %></p>
 
+<div class="post">
+  <%= turbo_frame_tag "post" do %>
+    <p>
+      <big>
+        <%= @post.content %>
+      </big>
+    </p>
 
-<%= turbo_frame_tag "post" do %>
-  <p>
-    <big>
-      <%= @post.content %>
-    </big>
-  </p>
-
-  <p>
-    <small>
-      <%= link_to "#{@post.user.email}", @post.user, target: '_top' %> @
-      <%= @post.created_at.to_formatted_s(:short) %>
-    </small>
-  </p>
-  <% if @post.user == current_user %>
-    <%= link_to 'Edit', edit_user_post_path(@post.user, @post) %> |
-    <%= link_to 'Delete', user_post_path(@post.user, @post), method: :delete, data: { confirm: 'Are you sure?' } %>
+    <p>
+      <small>
+        <%= link_to "#{@post.user.email}", @post.user, target: '_top' %> @
+        <%= @post.created_at.to_formatted_s(:short) %>
+      </small>
+    </p>
+    <% if @post.user == current_user %>
+      <%= link_to 'Edit', edit_user_post_path(@post.user, @post) %> |
+      <%= link_to 'Delete', user_post_path(@post.user, @post), method: :delete, data: { confirm: 'Are you sure?' } %>
+    <% end %>
   <% end %>
-<% end %>
+</div>
 
-<%= turbo_stream_from "comments" %>
-<%= turbo_frame_tag "comments" do %>
-  <h2>Comments</h2>
-  <%= render @post.comments %>
-<% end %>
+<div class="comments">
+  <%= turbo_stream_from "comments" %>
+  <%= turbo_frame_tag "comments" do %>
+    <h2>Comments</h2>
+    <%= render @post.comments %>
+  <% end %>
 
-<%= turbo_frame_tag 'new_comment', src: new_user_post_comment_path(@post.user, @post), target: '_top' %>
+  <%= turbo_frame_tag 'new_comment', src: new_user_post_comment_path(@post.user, @post), target: '_top' %>
+</div>
