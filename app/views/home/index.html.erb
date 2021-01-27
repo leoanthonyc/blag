@@ -1,11 +1,17 @@
 <p id="notice"><%= notice %></p>
 
-<h1>All Posts</h1>
+<div class="all-posts">
+  <div>
+    <h1>All Posts</h1>
+  </div>
 
-<div class="new-post">
-  <%= turbo_frame_tag 'new_post', src: new_user_post_path(current_user), target: '_top' %>
+  <div>
+    <div class="new-post">
+      <%= turbo_frame_tag 'new_post', src: new_user_post_path(current_user), target: '_top' %>
+    </div>
+
+    <ul id="posts">
+      <%= render @posts %>
+    </ul>
+  </div>
 </div>
-
-<ul id="posts">
-  <%= render @posts %>
-</ul>

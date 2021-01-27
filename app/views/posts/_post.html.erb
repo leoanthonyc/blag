@@ -1,7 +1,13 @@
 <li>
-  <span class="content">
-    <%= link_to post.content, [post.user, post] %> 
-  </span>
-  <span class="author"><%= post.user.email %></span>
-  <span class="timestamp"><%= time_ago_in_words(post.created_at) %> ago</span>
+  <div class="post-item">
+    <div>
+      <span class="content">
+        <%= link_to truncate(post.content, length: 100), [post.user, post] %> 
+      </span>
+      <div class="content-info">
+        <span class="author"><%= post.user.email %></span>
+        <span class="timestamp"><%= time_ago_in_words(post.created_at) %></span>
+      </div>
+    </div>
+  <div>
 </li>
