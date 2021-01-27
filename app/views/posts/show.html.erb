@@ -14,10 +14,9 @@
       <%= @post.created_at.to_formatted_s(:short) %>
     </small>
   </p>
-
   <% if @post.user == current_user %>
     <%= link_to 'Edit', edit_user_post_path(@post.user, @post) %> |
-    <%= link_to 'Destroy', [@post.user, @post], method: :delete, data: { confirm: 'Are you sure?' } %>
+    <%= link_to 'Delete', user_post_path(@post.user, @post), method: :delete, data: { confirm: 'Are you sure?' } %>
   <% end %>
 <% end %>
 
