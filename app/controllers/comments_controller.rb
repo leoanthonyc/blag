@@ -5,6 +5,7 @@ class CommentsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_post, only: %i[new create]
   before_action :set_comment, only: %i[show edit update]
+  before_action :authorize_user!, only: %i[edit update]
 
   def new
     @comment = @post.comments.new(user: current_user)
@@ -58,5 +59,9 @@ class CommentsController < ApplicationController
 
   def comment_params
     params.require(:comment).permit(:content)
+  end
+
+  def authorize_user!
+    raise 'Unauthorized' unless @comment.user == current_user
   end
 end

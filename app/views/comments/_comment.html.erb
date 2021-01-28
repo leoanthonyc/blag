@@ -1,11 +1,10 @@
 <%= turbo_frame_tag comment do %>
   <p><%= comment.content %></p>
   <p>
-    <%= link_to 'Edit', edit_user_post_comment_path(comment.user, comment.post, comment) %>
     <small>
       <%= comment.user.email %>
       &middot;
-      <%= comment.created_time_ago %>
+       <%= comment.created_time_ago %>
     </small>
   </p>
 <% end %>
