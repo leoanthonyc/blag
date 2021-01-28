@@ -6,7 +6,8 @@
       </span>
       <div class="content-info">
         <span class="author"><%= post.user.email %></span>
-        <span class="timestamp"><%= time_ago_in_words(post.created_at) %></span>
+        &middot;
+        <span class="timestamp"><%= post.created_time_ago %></span>
       </div>
     </div>
   <div>

@@ -10,7 +10,8 @@
 
     <p>
       <small>
-        <%= link_to "#{@post.user.email}", @post.user, target: '_top' %> @
+        <%= link_to "#{@post.user.email}", @post.user, target: '_top' %>
+        &middot;
         <%= @post.created_at.to_formatted_s(:short) %>
       </small>
     </p>
